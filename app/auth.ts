@@ -21,4 +21,11 @@ export const {
       },
     }),
   ],
+  callbacks: {
+    session({ session, user }) {
+      // @ts-ignore
+      session.user.id = user.id
+      return session
+    },
+  }
 });

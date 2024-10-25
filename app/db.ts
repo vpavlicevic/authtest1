@@ -20,7 +20,7 @@ export async function createUser(email: string, password: string) {
   let salt = genSaltSync(10);
   let hash = hashSync(password, salt);
 
-  return await db.insert(users).values({ email, password: hash });
+  return await db.insert(users).values({ email, password: hash, role: "standard" });
 }
 
 async function ensureTableExists() {
@@ -36,7 +36,8 @@ async function ensureTableExists() {
       CREATE TABLE "User" (
         id SERIAL PRIMARY KEY,
         email VARCHAR(64),
-        password VARCHAR(64)
+        password VARCHAR(64),
+        role VARCHAR(64)
       );`;
   }
 
@@ -44,6 +45,7 @@ async function ensureTableExists() {
     id: serial('id').primaryKey(),
     email: varchar('email', { length: 64 }),
     password: varchar('password', { length: 64 }),
+    role: varchar('role', { length: 64 }),
   });
 
   return table;
