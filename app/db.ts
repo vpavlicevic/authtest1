@@ -20,7 +20,7 @@ export async function createUser(email: string, password: string) {
   let salt = genSaltSync(10);
   let hash = hashSync(password, salt);
 
-  return await db.insert(users).values({ email, password: hash , role: "basic"});
+  return await db.insert(users).values({ email, password: hash, role: "standard" });
 }
 
 async function ensureTableExists() {
