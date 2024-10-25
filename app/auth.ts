@@ -21,11 +21,4 @@ export const {
       },
     }),
   ],
-  callbacks: {
-    session({ session, user }) {
-      // @ts-ignore
-      session.user.role = user.role
-      return session
-    },
-  }
 });
