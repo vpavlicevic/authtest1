@@ -24,7 +24,7 @@ export const {
   callbacks: {
     session({ session, user }) {
       // @ts-ignore
-      session.user.id = user.id
+      session.user.role = user.role
       return session
     },
   }
